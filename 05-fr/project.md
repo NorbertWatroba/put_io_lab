@@ -17,9 +17,9 @@ Specyfikacja wymagań funkcjonalnych w ramach informatyzacji procesu sprzedaży 
 **Scenariusz główny:**
 1. [Sprzedający](#ac1) wystawia produkt na aukcję. ([UC1](#uc1))
 2. [Kupujący](#ac2) oferuje kwotę za produkt wyższą od aktualnie najwyższej oferty. ([BR1](#br1))
-3. [Kupujący](#ac2) wygrywa aukcję ([BR2](#br2))
-4. [Kupujący](#ac2) przekazuje należność Sprzedającemu.
-5. [Sprzedający](#ac1) przekazuje produkt Kupującemu.
+3. [Kupujący](#ac2) wygrywa aukcję. ([BR2](#br2))
+4. [Kupujący](#ac2) przekazuje należność Sprzedającemu. ([BR3](#br3))
+5. [Sprzedający](#ac1) przekazuje produkt Kupującemu. ([UC2](#uc2))
 
 **Scenariusze alternatywne:** 
 
@@ -50,10 +50,13 @@ Osoba chcąca zakupić produkt na aukcji.
 
 [Sprzedający](#ac1):
 * [UC1](#uc1): Wystawienie produktu na aukcję
-* ...
+* [UC2](#uc2): Przekazanie produktu kupującemu
 
-[Kupujący](#ac2)
-* ...
+
+[Kupujący](#ac2):
+* [BR1](#br2): Złożenie oferty na kwotę wyższą od aktualnie najwyższej
+* [BR2](#br2): Wygranie aukcji
+* [BR3](#br3): Przekazanie należności sprzedającemu
 
 ---
 <a id="uc1"></a>
@@ -77,12 +80,15 @@ Osoba chcąca zakupić produkt na aukcji.
 ---
 
 <a id="uc2"></a>
-### UC2: ...
+### UC2: Przekazanie produktu
 
-**Aktorzy:** [Sprzedający](#ac1), [Kupujący](#ac2), ...
+**Aktorzy:** [Sprzedający](#ac1)
 
 **Scenariusz główny:**
-1. ...
+1. System informuje o pomyślnej sprzedaży
+2. [Sprzedający](#ac1) otrzymuje należności
+2. [Sprzedający](#ac1) przekazuje produkt 
+
 
 **Scenariusze alternatywne:** 
 
@@ -91,7 +97,7 @@ Osoba chcąca zakupić produkt na aukcji.
 
 ---
 
-## Obiewkty biznesowe (inaczje obiekty dziedzinowe lub informatycjne)
+## Obiekty biznesowe (inaczej obiekty dziedzinowe lub informacyjne)
 
 ### BO1: Aukcja
 
