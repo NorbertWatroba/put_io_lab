@@ -16,14 +16,12 @@ Specyfikacja wymagań funkcjonalnych w ramach informatyzacji procesu sprzedaży 
 
 **Scenariusz główny:**
 1. [Sprzedający](#ac1) wystawia produkt na aukcję. ([UC1](#uc1))
-2. [Kupujący](#ac2) oferuje kwotę za produkt wyższą od aktualnie najwyższej oferty. ([BR1](#br1))
-3. [Kupujący](#ac2) wygrywa aukcję. ([BR2](#br2))
-4. [Kupujący](#ac2) przekazuje należność Sprzedającemu. ([BR3](#br3))
-5. [Sprzedający](#ac1) przekazuje produkt Kupującemu. ([UC2](#uc2))
+2. [Kupujący](#ac2) oferuje kwotę za produkt wyższą od aktualnie najwyższej oferty. ([BR1](#br1), [UC2](#uc2))
+3. [Kupujący](#ac2) wygrywa aukcję ([BR2](#br2))
+4. [Kupujący](#ac2) przekazuje należność Sprzedającemu. ([UC3](#uc3))
+5. [Sprzedający](#ac1) przekazuje produkt Kupującemu. ([UC4](#uc4))
 
-**Scenariusze alternatywne:** 
-
-2.A. Oferta Kupującego została przebita, a [Kupujący](#ac2) pragnie przebić aktualnie najwyższą ofertę.
+**Scenariusze alternatywne:** 2.A. Oferta Kupującego została przebita, a [Kupujący](#ac2) pragnie przebić aktualnie najwyższą ofertę.
 * 2.A.1. Przejdź do kroku 2.
 
 3.A. Czas aukcji upłynął i [Kupujący](#ac2) przegrał aukcję. ([BR2](#br2))
@@ -50,13 +48,13 @@ Osoba chcąca zakupić produkt na aukcji.
 
 [Sprzedający](#ac1):
 * [UC1](#uc1): Wystawienie produktu na aukcję
-* [UC2](#uc2): Przekazanie produktu kupującemu
+* [UC4](#uc4): Potwierdzenie wysyłki
+* UC5: Anulowanie aukcji
 
-
-[Kupujący](#ac2):
-* [BR1](#br2): Złożenie oferty na kwotę wyższą od aktualnie najwyższej
-* [BR2](#br2): Wygranie aukcji
-* [BR3](#br3): Przekazanie należności sprzedającemu
+[Kupujący](#ac2)
+* [UC2](#uc2): Licytowanie produktu
+* [UC3](#uc3): Płacenie za produkt
+* UC6: Przeglądanie aukcji
 
 ---
 <a id="uc1"></a>
@@ -71,29 +69,35 @@ Osoba chcąca zakupić produkt na aukcji.
 4. System weryfikuje poprawność danych.
 5. System informuje o pomyślnym wystawieniu produktu na aukcję.
 
-**Scenariusze alternatywne:** 
-
-4.A. Podano niepoprawne lub niekompletne dane produktu.
+**Scenariusze alternatywne:** 4.A. Podano niepoprawne lub niekompletne dane produktu.
 * 4.A.1. System informuje o błędnie podanych danych.
 * 4.A.2. Przejdź do kroku 2.
 
 ---
 
 <a id="uc2"></a>
-### UC2: Przekazanie produktu
+### UC2: Licytowanie produktu
 
-**Aktorzy:** [Sprzedający](#ac1)
+**Aktorzy:** [Kupujący](#ac2)
 
 **Scenariusz główny:**
-1. System informuje o pomyślnej sprzedaży
-2. [Sprzedający](#ac1) otrzymuje należności
-2. [Sprzedający](#ac1) przekazuje produkt 
+1. [Kupujący](#ac2) podaje kwotę oferty.
+2. System weryfikuje ofertę. ([BR1](#br1))
+3. System zapisuje ofertę.
 
+**Scenariusze alternatywne:** 2.A. Oferta za niska.
+* 2.A.1. System informuje o błędzie.
+* 2.A.2. Przejdź do kroku 1.
 
-**Scenariusze alternatywne:** 
+---
+<a id="uc3"></a>
+### UC3: Płacenie za produkt
+*(Scenariusz nieopisany)*
 
-1.A. ...
-* 4.A.1. ...
+---
+<a id="uc4"></a>
+### UC4: Potwierdzenie wysyłki
+*(Scenariusz nieopisany)*
 
 ---
 
@@ -107,6 +111,12 @@ Aukcja jest formą zawierania transakcji kupna-sprzedaży, w której Sprzedając
 
 Fizyczny lub cyfrowy obiekt, który ma zostać sprzedany w ramach aukcji.
 
+### BO3: Oferta
+Zgłoszona kwota przez Kupującego.
+
+### BO4: Płatność
+Potwierdzenie zapłaty.
+
 ## Reguły biznesowe
 
 <a id="br1"></a>
@@ -116,16 +126,18 @@ Złożenie oferty wymaga zaproponowania kwoty wyższej niż aktualnie oferowana 
 
 
 <a id="br2"></a>
-### BR2: Rozstrzygnięcie aukcji
+### BR2: Roztrzygnięcie aukcji
 
 Aukcję wygrywa ten z [Kupujący](#ac2)ch, który w momencie jej zakończenia (upłynięcia czasu) złożył najwyższą ofertę.
 
 ## Macierz CRUDL
 
 
-| Przypadek użycia                                  | Aukcja | Produkt | ... |
-| ------------------------------------------------- | ------ | ------- | --- |
-| UC1: Wystawienia produktu na aukcję               |    C   |    C    | ... |
-| ???                                               |  ...   |  ...    | ... |
-
-
+| Przypadek użycia | Aukcja | Produkt | Oferta | Płatność |
+| :--- | :---: | :---: | :---: | :---: |
+| UC1: Wystawienia produktu na aukcję | C | C | | |
+| UC2: Licytowanie produktu | U | R | C | |
+| UC3: Płacenie za produkt | U | R | R | C |
+| UC4: Potwierdzenie wysyłki | U | R | | |
+| UC5: Anulowanie aukcji | D | D | | |
+| UC6: Przeglądanie aukcji | R | R | | |
